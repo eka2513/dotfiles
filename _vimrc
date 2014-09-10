@@ -111,7 +111,7 @@ endif
 
 NeoBundle "Shougo/neosnippet"
 NeoBundle "Shougo/neosnippet-snippets"
-let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets, ~/.vim/mysnippets'
+let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets, ~/dotfiles/mysnippets'
 
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)))
