@@ -21,34 +21,100 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " ファイルオープンを便利に
-NeoBundle 'Shougo/unite.vim'
+"NeoBundle 'Shougo/unite.vim'
 " Unite.vimで最近使ったファイルを表示できるようにする
-NeoBundle 'Shougo/neomru.vim'
+"NeoBundle 'Shougo/neomru.vim'
 " ファイルをtree表示してくれる
-NeoBundle 'scrooloose/nerdtree'
+"NeoBundle 'scrooloose/nerdtree'
 " Gitを便利に使う
-NeoBundle 'tpope/vim-fugitive'
+"NeoBundle 'tpope/vim-fugitive'
 
 " Rails向けのコマンドを提供する
-NeoBundle 'tpope/vim-rails'
+"NeoBundle 'tpope/vim-rails'
 " Ruby向けにendを自動挿入してくれる
-NeoBundle 'tpope/vim-endwise'
+"NeoBundle 'tpope/vim-endwise'
 
 " コメントON/OFFを手軽に実行
-NeoBundle 'tomtom/tcomment_vim'
+"NeoBundle 'tomtom/tcomment_vim'
 " シングルクオートとダブルクオートの入れ替え等
-NeoBundle 'tpope/vim-surround'
+"NeoBundle 'tpope/vim-surround'
 
 " インデントに色を付けて見やすくする
-NeoBundle 'nathanaelkane/vim-indent-guides'
+"NeoBundle 'nathanaelkane/vim-indent-guides'
 " ログファイルを色づけしてくれる
-NeoBundle 'vim-scripts/AnsiEsc.vim'
+"NeoBundle 'vim-scripts/AnsiEsc.vim'
 " 行末の半角スペースを可視化(うまく動かない？)
-NeoBundle 'bronson/vim-trailing-whitespace'
+"NeoBundle 'bronson/vim-trailing-whitespace'
 " less用のsyntaxハイライト
-NeoBundle 'KohPoll/vim-less'
+"NeoBundle 'KohPoll/vim-less'
 
-" 余談: neocompleteは合わなかった。ctrl+pで補完するのが便利
+" web系
+"NeoBundle 'mattn/emmet-vim'
+"" NeoBundle 'taichouchou2/surround.vim'
+"NeoBundle 'hail2u/vim-css3-syntax'
+"" NeoBundle 'taichouchou2/html5.vim'
+"" NeoBundle 'taichouchou2/vim-javascript'
+"NeoBundle 'kchmck/vim-coffee-script'
+"NeoBundle 'jelera/vim-javascript-syntax'
+"NeoBundle 'Shougo/neocomplcache.vim'
+"" 余談: neocompleteは合わなかった。ctrl+pで補完するのが便利
+
+" originalrepos on github
+NeoBundle 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/vimproc'
+NeoBundle 'VimClojure'
+NeoBundle 'Shougo/vimshell'
+NeoBundle 'Shougo/unite.vim'
+NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'jpalardy/vim-slime'
+NeoBundle 'scrooloose/syntastic'
+NeoBundle 'scrooloose/nerdtree' " ディレクトリツリー表示
+
+" web屋必須プラグイン
+NeoBundle 'mattn/emmet-vim'
+"NeoBundle 'taichouchou2/surround.vim'
+NeoBundle 'open-browser.vim'
+NeoBundle 'mattn/webapi-vim'
+NeoBundle 'tell-k/vim-browsereload-mac'
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'taichouchou2/html5.vim'
+"NeoBundle 'taichouchou2/vim-javascript' " jQuery syntax追加
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'tpope/vim-endwise.git' 
+NeoBundle 'ruby-matchit'
+NeoBundle 'vim-scripts/dbext.vim'
+
+" 補完
+"NeoBundle 'taichouchou2/vim-rsense'
+" コメント
+NeoBundle 'tomtom/tcomment_vim'
+"NeoBundle 'taichouchou2/surround.vim'
+" railsサポート
+NeoBundle 'taichouchou2/vim-rails'
+NeoBundle 'romanvbabenko/rails.vim'
+NeoBundle 'ujihisa/unite-rake'
+NeoBundle 'basyura/unite-rails'
+" reference環境
+NeoBundle 'thinca/vim-ref'
+"NeoBundle 'taichouchou2/vim-ref-ri'
+"NeoBundle 'taq/vim-rspec'
+
+
+NeoBundle 'Shougo/neocomplete'
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_ignore_case = 1
+let g:neocomplete#enable_smart_case = 1
+if !exists('g:neocomplete#keyword_patterns')
+  let g:neocomplete#keyword_patterns = {}
+endif
+"let g:neocomplete#keyword_patterns._ = '\h\w*'}
+
+NeoBundle "Shougo/neosnippet"
+NeoBundle "Shougo/neosnippet-snippets"
+let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets, ~/.vim/mysnippets'
+
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)))
 
 call neobundle#end()
 
@@ -76,7 +142,7 @@ set laststatus=2
 " ステータス行に表示させる情報の指定(どこからかコピペしたので細かい意味はわかっていない)
 set statusline=%<%f\ %m%r%h%w%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%l,%c%V%8P
 " ステータス行に現在のgitブランチを表示する
-set statusline+=%{fugitive#statusline()}
+" set statusline+=%{fugitive#statusline()}
 " ウインドウのタイトルバーにファイルのパス情報等を表示する
 set title
 " コマンドラインモードで<Tab>キーによるファイル名補完を有効にする
@@ -112,9 +178,9 @@ set autoindent
 " 改行時に入力された行の末尾に合わせて次の行のインデントを増減する
 set smartindent
 " タブ文字の表示幅
-set tabstop=2
+set tabstop=4
 " Vimが挿入するインデントの幅
-set shiftwidth=2
+set shiftwidth=4
 " 行頭の余白内で Tab を打ち込むと、'shiftwidth' の数だけインデントする
 set smarttab
 " カーソルを行頭、行末で止まらないようにする
