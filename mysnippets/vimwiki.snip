@@ -1,0 +1,72 @@
+snippet		vimwikitable
+alias		table
+options		head
+prev_word	'^'
+	|   |   |   |   |   |
+	|---|---|---|---|---|
+	|   |   |   |   |   |
+snippet		blog
+options		head
+prev_word	'^'
+	= ${1:title} =
+
+	== 問題 ==
+
+
+	== 環境 ==
+
+
+	== 調査 ==
+
+
+	== 結果 ==
+
+
+	== 対策 ==
+
+
+	== まとめ ==
+snippet		redmine_ticket
+alias		rmticket ticket
+options		head
+prev_word	'^'
+	■タイトル
+	${1:}
+	■本文
+	== 背景 ==
+
+	${1:}
+
+
+	== ゴール ==
+
+
+	== 実現案 ==
+snippet		redmine_bug
+alias		bug
+options		head
+prev_word	'^'
+	■タイトル
+	${4:}
+
+	■本文
+	== フェーズ ==
+
+	${1:シナリオ}テスト
+
+
+	== 再現性 ==
+
+	${2:あり}
+
+
+	== 機能名 ==
+
+	${3:Func01}
+
+
+	== 環境 ==
+
+
+
+	== 現象 ==

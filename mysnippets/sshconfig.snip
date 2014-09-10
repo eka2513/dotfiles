@@ -1,0 +1,11 @@
+snippet	host
+	Host ${1:name}
+		Hostname ${2:example.com}
+		User ${3:username}
+		IdentityFile ~/.ssh/${4:filename}
+		StrictHostKeyChecking no
+		ServerAliveInterval 150
+		Compression yes
+		CompressionLevel 9
+		TCPKeepAlive yes
+		# Ciphers arcfour256

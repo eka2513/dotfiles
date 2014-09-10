@@ -1,0 +1,251 @@
+snippet		title
+alias		ti t h1
+options		head
+prev_word	'^'
+	${1:TARGET}
+	====================
+
+snippet		subtitle
+alias		subti subt h2
+options		head
+prev_word	'^'
+	${1:TARGET}
+	--------------------
+
+snippet		hr
+options		head
+prev_word	'^'
+	-----
+snippet		h3
+options		head
+prev_word	'^'
+
+	### ${1:TARGET}
+snippet		h4
+options		head
+prev_word	'^'
+	#### ${1:}
+snippet		vimwikitable
+alias		table
+options		head
+prev_word	'^'
+	|   |   |   |   |   |
+	|---|---|---|---|---|
+	|   |   |   |   |   |
+snippet		strong
+alias		b
+options		word
+	**${1:TARGET}**${2:}
+snippet		em
+options		word
+	_${1:TARGET}_${2:}
+snippet		img
+options		word
+	![](file:///C:/Users/`$USER`/Desktop/${1:})
+	${2:}
+snippet		link
+alias		a
+options		word
+	[${1:TARGET}](${2:url})
+	${3:}
+snippet		code
+alias		precode src
+options		head
+prev_word	'^'
+	\`\`\`${1:filetype}:${2:#:filename}
+	${3:}
+	\`\`\`
+snippet		skel_blog
+alias		blog
+options		head
+prev_word	'^'
+	${1:title}
+	====================
+
+	背景
+	--------------------
+
+	${2:}
+
+
+	環境
+	--------------------
+
+	```bash:
+	$ uname -a
+	xxxxx
+
+	$ bash -version
+	xxxxx
+	```
+
+
+	調査
+	--------------------
+
+
+
+	結果
+	--------------------
+
+
+	対策
+	--------------------
+
+
+	ひとこと
+	--------------------
+
+snippet     agenda
+alias		gijiroku
+options     head
+prev_word   '^'
+	${1:meeting_name}
+	====================
+
+	1) 日時
+	--------------------
+
+	* ${2:}/${3:}/${4:} ${5:}:${6:}～${7:}:${8:}
+
+	2) 場所
+	--------------------
+
+	* ${9:}
+
+	3) 参加者
+	--------------------
+
+	* ${10:customer}
+
+	* ${11:we}
+
+
+	4) 目的
+	--------------------
+
+	* ${12:}
+
+	5) 検討事項
+	--------------------
+
+	* ...
+
+	6) 添付資料
+	--------------------
+snippet		qiita
+options		head
+prev_word	'^'
+	${1:title}
+	$1
+	====================
+
+	${0:}
+snippet		span
+options		word
+	span[style="color:${1:red}"]{${2:TARGET}}${0:}
+snippet		project_plan
+alias		projectplan
+options		head
+prev_word	'^'
+	プロジェクト計画書 
+	====================
+
+	要望
+	--------------------
+
+
+	背景・現状
+	--------------------
+
+
+
+	システム概要
+	--------------------
+
+
+	ステークホルダー
+	--------------------
+
+	### エンドユーザー
+
+	### お客様
+
+	### 案件一次受け
+
+	### 開発担当
+
+
+
+
+	スケジュール
+	--------------------
+
+	開発体制
+	--------------------
+
+	OS、言語、ツール
+	--------------------
+
+	### APサーバー
+
+	* **OS** : 
+	* **言語** : 
+	* **ツール** : 
+	* **ミドルウェア** : 
+
+
+	### DBサーバー
+
+	* **OS** : 
+	* **言語** : 
+	* **ツール** : 
+	* **ミドルウェア** : 
+
+
+
+
+	ソースコード管理
+	--------------------
+
+	質問・課題管理
+	--------------------
+
+	進捗管理
+	--------------------
+
+
+snippet		daily
+options		head
+prev_word	^
+	日報(`strftime("%Y/%m/%d")`)
+	====================
+
+	スケジュール
+	--------------------
+
+	* 09:00〜12:00
+		- 
+
+	* 13:00〜17:00
+		- 
+
+	* 14:00〜15:00
+		- 
+
+	* 17:00〜17:30
+		- 掃除
+
+	* 17:30〜18:30
+
+
+	良かったこと
+	--------------------
+
+
+	悪かったこと
+	--------------------
+
+
+	今日の気付き
+	--------------------

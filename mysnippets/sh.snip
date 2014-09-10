@@ -1,0 +1,204 @@
+snippet	until
+prev_word   '^'
+	until [[ ${1:condition} ]]; do
+		   ${2:}
+	done
+snippet	fun
+prev_word   '^'
+	function ${1}
+	{
+		${2:}
+	}
+snippet	case
+prev_word   '^'
+	case ${1:word} in
+		   ${2:pattern})
+				   ${3};;
+	esac
+snippet	$
+options     word
+	${${1:}}${0:}
+snippet	list
+alias	li
+prev_word   '^'
+	${1:list}=(
+		"${$1[@]}"
+		${2:}
+	)
+snippet	var
+alias	v
+prev_word   '^'
+	${1:var}="${2:}"
+snippet	local
+alias	lo lv
+prev_word   '^'
+	local ${1:var}="${2:}"${3:}
+snippet	wh
+options	word
+prev_word   '^'
+	while ${1:condition}; do
+		${2:}
+	done
+snippet	if
+prev_word   '^'
+	if [[ ${1:condition} ]]; then
+		${2:}
+	fi
+snippet	elif
+	elif [[ ${1:condition} ]]; then
+		   ${2:}
+snippet	for
+prev_word   '^'
+	for ${1:i} in ${${2:list}[@]}; do
+		${3}
+	done
+snippet		while_read
+alias		eachline whileread read
+options		word
+	local $1
+	while read ${1:l}; do
+		${2}
+	done
+snippet     alias
+alias        ali al
+prev_word   '^'
+	alias ${1:name}="${2:value}"
+snippet     skel_sh
+alias		skel
+prev_word   '^'
+	#!/bin/bash -u
+	set -e
+
+	# ex) opts=':ab:cd:'${2:}
+	opts=':${1:}'
+
+	function usage
+	{
+		echo "${opts}" | sed 's/\([a-z]\)/ -\1/g' | sed 's/\-\([a-z]\):/-\1 \U\1\E/g'
+		exit 1
+	}
+
+	verbose=off
+
+	while getopts ":${opts}" opt ; do
+		case "${opt}" in
+			a)
+				echo $opt
+				;;
+			b)
+				echo $opt
+				echo "${OPTARG}"
+				;;
+			c)
+				echo $opt
+				;;
+			v)
+				verbose=on
+				;;
+			:|\?)
+				usage
+				;;
+		esac
+	done
+
+	shift $(($OPTIND -1))
+
+snippet     source
+options     head
+prev_word   '^'
+	[ -h ${1:file} || -f $1 ] && . $1
+	${2:}
+snippet		echo
+alias		e
+options		word
+	echo "${${1:}}"${2:}
+snippet		yyyymmdd
+alias		ymd now today
+options		word
+	$(date +%Y%m%d)
+snippet		mkdir_if_not_exists
+alias		mkdirifnotexists
+options		head
+	[ ! -d "${1:path}" ] && mkdir -p "$1"
+snippet		mkdir_if_not_exists_and_cd
+alias		mkdirifnotexistsandcd
+options		head
+	[ ! -d "${1:path}" ] && mkdir -p "$1" 
+	cd "$1"
+snippet		valid
+alias	check
+options		head
+prev_word	'^'
+	if [ ${1:cond} ]; then
+		echo 1>&2 "${2:message}";
+		exit 1;
+	fi
+snippet		join
+	"$(IFS=${2:,}; echo "${${1:list}[*]}")"
+snippet		random
+alias		rand
+options		word
+	$((${1:range}*$RANDOM/32767))
+snippet		backup
+alias		cpbk
+options		head
+prev_word	'^'
+	sudo cp ${1:/path/to/file}{,.$(date +%Y%m%d)}
+	${2:#EOS}
+snippet		if_type
+alias		iftype if_which
+options		head
+prev_word	'^'
+	if type ${1:command} >/dev/null 2>&1; then
+		${2:}
+	fi
+snippet		checkparam
+alias		ifcheckparam
+options		head
+prev_word	'^'
+
+	if [ $# -ne 1 ]; then
+		echo "USAGE:"
+		echo "    $(basename \$0) ${1:params}"
+		exit 1
+	fi
+
+	${2:}
+snippet		script_dir_path
+alias		scriptdirpath dirname
+options		head
+prev_word	'^'
+	script_dir_path=$(cd $(dirname ${BASH_SOURCE:-$0}); pwd)
+snippet		script_file_name
+alias		scriptfilename
+options		head
+prev_word	'^'
+	script_file_name=$0
+snippet		is_pipe
+alias		ispipe
+options		head
+prev_word	'^'
+	function is_pipe() {
+		if [ -p /dev/stdin ] || [ -p /dev/stdout ]; then
+			return 0
+		else
+			return 1
+		fi
+	}
+snippet		trap
+options		head
+prev_word	'^'
+	trap 'onExit' EXIT
+	function onExit
+	{
+		echo 'exit.'
+	}
+
+	trap 'onStop' 2
+	function onStop
+	{
+		echo 'stop.'
+	}
+snippet		iconv
+options		word
+	iconv -f ${1:cp932} -t ${2:utf8}${0:}

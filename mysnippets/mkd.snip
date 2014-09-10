@@ -1,0 +1,15 @@
+snippet     title
+alias       ti
+options     head
+prev_word   '^'
+    ## ${1:}
+snippet     subtitle
+alias       subti
+options     head
+prev_word   '^'
+    # ${1:}
+snippet     link
+alias       anchor
+options     word
+prev_word   '^'
+    ${1:docname} <${2:uri}>

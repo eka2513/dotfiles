@@ -1,0 +1,64 @@
+snippet		yum
+options		word
+	- name: Intall yum packages
+		yum: pkg={{ item }} state=present ${1:#:enablerepo=remi}
+		with_items:
+			- ${0:}
+snippet		npm
+options		word
+	npm: name=${1:package} global=yes  state=${3:#:present/latest/absent}
+snippet		copy
+options		word
+	copy: src=${1:src} dest=${2:dest} ${3:#:owner=owner} ${4:#:group=group} ${5:#:mode=0644}
+snippet		shell
+options		word
+	shell: ${1:}
+		args:
+			chdir: ${0:}
+			creates: 
+snippet		rpm
+options		word
+	rpm: state=${1:installed/removed} file=${2:file}
+snippet		file
+options		word
+	file: path=${1:path} state=${2:#:file/link/directory/hard/touch/absent} mode=${3:#:666}
+	# file: src=${1:srcpath} dest=${2:destpath} recurse=yes
+snippet		user
+options		word
+	user: name=${1:name} groups=$1,${2:apache}${3:}
+snippet		wait_for
+alias		waitfor
+options		word
+	wait_for: port=22 delay=30 timeout=${1:90}${2:}
+snippet		local_action
+alias		localaction
+options		word
+	local_action:
+			module: ${1:wait_for}
+snippet		ini_file
+alias		inifile ini
+options		head
+prev_word	'^'
+	ini_file: dest=/etc/environment
+				section=present
+				value=/usr/lib/pgsql/data
+				backup=yes
+snippet		service
+options		word
+	service: name=${1:service_name} enabled=yes state=restarted
+snippet		subversion
+alias		svn
+options		word
+prev_word	'^'
+	subversion: repo=${2:url} dest=/usr/local/src/${1:app_name}
+snippet		when
+options		head
+prev_word	'^'
+	when: "ansible_os_family == 'Darwin'"
+snippet		brew
+options		word
+	homebrew: name=${1:} state=head
+snippet		subversion
+alias		svn
+options		word
+	subversion: repo=${1:url}  username=${2:username} password=${3:password}

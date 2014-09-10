@@ -1,0 +1,61 @@
+snippet	ti
+alias	h1
+prev_word   '^'
+	*[${1:keyword}]${2:title}
+	${3:}
+snippet	ggl
+options word
+	 [google:${1:keyword}] ${2:}
+snippet	url
+	 [${1:url}:title] ${2:}
+snippet	code
+alias	pre
+prev_word   '^'
+	>|${1:groovy}|
+	${2:}
+	||<
+
+snippet	subti
+snippet	h2
+prev_word   '^'
+	**${1:h2}
+	${2:}
+snippet	codesh
+alias	presh
+options word
+prev_word   '^'
+	>|sh|
+	$ ${1:}
+	||<
+
+snippet	codegroovy
+alias	pregroovy
+options word
+prev_word   '^'
+	>|groovy|
+	${1:}
+	||<
+
+snippet	twitter
+options word
+	[twitter:${1:id}:detail]
+snippet     b
+options word
+	<strong>${1:}</strong> ${2:}
+snippet     i
+options word
+	<em>${1:}</em> ${2:}
+snippet		skel_hatena
+alias		skelhatena
+options		head
+prev_word	'^'
+	*[${1:keyword}]${2:title}
+
+	** ${3:}
+	「まず」予想/ドキュメント/知識/常識/経験の内容
+	** 「ところが」動かなかった内容
+
+	** 「そこで」工夫した内容
+
+	** 「そして」動いた！
+
